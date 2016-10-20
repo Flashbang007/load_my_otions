@@ -12,6 +12,15 @@ VIMRCPATH=https://raw.githubusercontent.com/Flashbang007/vimrc/master/.vimrc
 CRESTORE='\033[0m'
 CRED='\033[00;31m'
 ###################
+if [[ ! -f $BRC ]]
+then
+    touch $BRC
+fi
+if [[ ! -f $VIMRC ]]
+then
+    touch $VIMRC
+fi
+
 lc_error() {
 #This exits the last command, if it Produces an Error
     ERRORCODE=$(echo $?)
