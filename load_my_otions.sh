@@ -63,8 +63,10 @@ case "$1" in
 
         source ~/.bashrc
         lc_error
-
-        rm $BRCB
+        
+            if [[ -f $BRCB ]]
+                rm $BRCB
+            fi
         lc_error
         ;;
 
@@ -74,7 +76,9 @@ case "$1" in
         wget $FORCE$VIMRCPATH
         lc_error
 
-        rm $VIMRCB
+            if [[ -f $VIMRCB ]]
+                rm $VIMRCB
+            fi
         lc_error
         ;;
     -h)
