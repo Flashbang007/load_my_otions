@@ -65,6 +65,7 @@ case "$1" in
         lc_error
         
             if [[ -f $BRCB ]]
+            then
                 rm $BRCB
             fi
         lc_error
@@ -77,6 +78,7 @@ case "$1" in
         lc_error
 
             if [[ -f $VIMRCB ]]
+            then
                 rm $VIMRCB
             fi
         lc_error
