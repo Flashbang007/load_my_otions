@@ -69,7 +69,6 @@ case "$1" in
         ;;
 
     -v|-vf|-fv)#Get .vimrc
-        mv $VIMRC $VIMRCB
         lc_error
 
         wget $FORCE$VIMRCPATH
