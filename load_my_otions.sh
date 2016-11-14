@@ -12,17 +12,14 @@ VIMRCPATH=https://raw.githubusercontent.com/Flashbang007/vimrc/master/.vimrc
 CRESTORE='\033[0m'
 CRED='\033[00;31m'
 ###################
-if [[ ! -f $BRC ]]
+cd ~
+if [[ -f $BRC ]]
 then
-    touch $BRC
-else
     mv $BRC $BRCB
 fi
 
-if [[ ! -f $VIMRC ]]
+if [[ -f $VIMRC ]]
 then
-    touch $VIMRC
-else
     mv $VIMRC $VIMRCB
 fi
 
@@ -61,14 +58,14 @@ case "$1" in
         wget $FORCE$BASHRCPATH
         lc_error
 
-        source ~/.bashrc
         lc_error
-        
+
             if [[ -f $BRCB ]]
-            then
+                then
                 rm $BRCB
             fi
         lc_error
+        source $BRC
         ;;
 
     -v|-vf|-fv)#Get .vimrc
@@ -78,7 +75,7 @@ case "$1" in
         lc_error
 
             if [[ -f $VIMRCB ]]
-            then
+                then
                 rm $VIMRCB
             fi
         lc_error
