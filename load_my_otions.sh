@@ -15,10 +15,15 @@ CRED='\033[00;31m'
 if [[ ! -f $BRC ]]
 then
     touch $BRC
+else
+    mv $BRC $BRCB
 fi
+
 if [[ ! -f $VIMRC ]]
 then
     touch $VIMRC
+else
+    mv $VIMRC $VIMRCB
 fi
 
 lc_error() {
@@ -51,7 +56,6 @@ fi
 case "$1" in
 
     -b|-bf|-fb)#Get .bashrc
-        mv $BRC $BRCB
         lc_error
 
         wget $FORCE$BASHRCPATH
