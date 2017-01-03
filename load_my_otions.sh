@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 BRC=~/.bashrc
 BRCB=~/.bashrc.bak
