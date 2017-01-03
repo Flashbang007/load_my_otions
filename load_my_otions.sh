@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 BRC=~/.bashrc
 BRCB=~/.bashrc.bak
@@ -13,21 +13,13 @@ CRESTORE='\033[0m'
 CRED='\033[00;31m'
 ###################
 cd ~
-if [[ -f $BRC ]]
-then
-    mv $BRC $BRCB
-fi
 
-if [[ -f $VIMRC ]]
-then
-    mv $VIMRC $VIMRCB
-fi
 
 lc_error() {
 #This exits the last command, if it Produces an Error
     ERRORCODE=$(echo $?)
 
-    if [ $ERRORCODE -ne 0 ]; then
+    if [[ $ERRORCODE -ne 0 ]]; then
 
         echo -e "Error Number $CRED- $ERRORCODE -$CRESTORE"
         exit $ERRORCODE
@@ -55,15 +47,19 @@ case "$1" in
     -b|-bf|-fb)#Get .bashrc
         lc_error
 
+        if [[ -f $BRC ]]
+        then
+            mv $BRC $BRCB
+        fi
+        lc_error
+
         wget $FORCE$BASHRCPATH
         lc_error
 
-        lc_error
-
-            if [[ -f $BRCB ]]
-                then
+        if [[ -f $BRCB ]]
+        then
                 rm $BRCB
-            fi
+        fi
         lc_error
         source $BRC
         ;;
@@ -71,13 +67,18 @@ case "$1" in
     -v|-vf|-fv)#Get .vimrc
         lc_error
 
+        if [[ -f $VIMRC ]]
+        then
+                mv $VIMRC $VIMRCB
+        fi
+
         wget $FORCE$VIMRCPATH
         lc_error
 
-            if [[ -f $VIMRCB ]]
-                then
+        if [[ -f $VIMRCB ]]
+        then
                 rm $VIMRCB
-            fi
+        fi
         lc_error
         ;;
     -h)
